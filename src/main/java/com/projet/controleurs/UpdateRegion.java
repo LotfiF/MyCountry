@@ -53,14 +53,17 @@ public class UpdateRegion {
 		map.addAttribute("region", region);
 		map.addAttribute("listePays", listePays);
 		return "formulaireUpdateRegion";		
-	}	
+	}
+	
 	@RequestMapping(value="{id}", method = RequestMethod.POST)	
 	public String modifierRegion(ModelMap map, @PathVariable int id, 
                                  @RequestParam(value="nom") String nom, 
                                  @RequestParam(value="monument") String monument, 
                                  @RequestParam(value="regionNumber") double regionNumber, 
-                                 @RequestParam(value="pays") int idPays, Region region) {	
+                                 @RequestParam(value="pays") int idPays) {	
 		String messageInfo = "";
+		
+		Region region = new Region();
 		List<Region> listeRegions = new ArrayList<Region>();
 		try {
 			region = regionService.trouverRegion(id);
